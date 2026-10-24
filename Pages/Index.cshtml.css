@@ -1,0 +1,76 @@
+/* Sadece ana sayfaya uygulanan stiller (Letterboxd renkleri) */
+
+.btn-yesil {
+    background-color: #00c030;
+    color: #fff;
+    font-weight: bold;
+}
+
+    .btn-yesil:hover {
+        background-color: #00a028;
+        color: #fff;
+    }
+
+/* Üst çubuktaki küçük arama */
+.ust-arama .form-control {
+    width: 180px;
+    background-color: #2c3440;
+    border: none;
+    color: #fff;
+}
+
+    .ust-arama .form-control::placeholder {
+        color: #9ab;
+    }
+
+/* Bölüm başlıkları: küçük, büyük harf, altı çizgili */
+.bolum-baslik {
+    color: #9ab;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid #456;
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+/* "Şunları yapabilirsin" kartları */
+.ozellik {
+    background-color: #2c3440;
+    color: #9ab;
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    height: 100%;
+}
+
+    .ozellik:hover {
+        background-color: #456;
+    }
+
+    .ozellik .ikon {
+        font-size: 2rem;
+        color: #00c030;
+    }
+
+    .ozellik h3 {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin: 0.5rem 0;
+    }
+
+    .ozellik p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+.kaynak {
+    color: #678;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+    .kaynak a {
+        color: #9ab;
+    }

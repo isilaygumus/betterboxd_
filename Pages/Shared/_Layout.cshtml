@@ -14,10 +14,25 @@
 
 </head>
 <body>
+    @{
+        // Şu an açık olan sayfa (ör. "/Index"), menüde o linki işaretlemek için
+        var aktifSayfa = ViewContext.RouteData.Values["page"]?.ToString();
+
+        // Sayfa ViewData["MenuUstte"] verdiyse menü üstte yatay, vermediyse solda alt alta
+        var menuUstte = ViewData["MenuUstte"] != null;
+    }
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-custom-navbar border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-custom-navbar border-bottom box-shadow mb-3 @(menuUstte ? "ust-menu" : "")">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">betterboxd</a>
+                <a class="navbar-brand fw-bold" asp-area="" asp-page="/Index">betterboxd</a>
+
+                @* Sayfa isterse üst çubuğa kendi içeriğini koyabilir (ör. ana sayfadaki arama kutusu) *@
+                @await RenderSectionAsync("UstArama", required: false)
+
+                @* Sayfa ViewData["MenuUstte"] verirse menü solda değil, burada yatay gösterilir (ör. Log in sayfası) *@
+                @if (menuUstte)
+                {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,35 +40,57 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Films</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index">Films</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Lists</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index">Lists</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Account/Login">Log in</a>
+                            <a class="nav-link" asp-area="" asp-page="/Account/Login">Log in</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Profil">Profil</a>
+                            <a class="nav-link" asp-area="" asp-page="/Profil">Profil</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-
                     </ul>
                 </div>
+                }
             </div>
-            
         </nav>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @if (menuUstte)
+        {
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        }
+        else
+        {
+        <div class="row">
+            <!-- Sol menü: mobilde yan yana, masaüstünde alt alta -->
+            <nav class="col-12 col-md-3 col-lg-2 mb-4">
+                <ul class="sol-menu nav flex-row flex-md-column">
+                    <li class="nav-item"><a class="nav-link @(aktifSayfa == "/Index" ? "aktif" : "")" asp-area="" asp-page="/Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-page="/Index">Films</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-page="/Index">Lists</a></li>
+                    <li class="nav-item"><a class="nav-link @(aktifSayfa == "/Account/Login" ? "aktif" : "")" asp-area="" asp-page="/Account/Login">Log in</a></li>
+                    <li class="nav-item"><a class="nav-link @(aktifSayfa == "/Profil" ? "aktif" : "")" asp-area="" asp-page="/Profil">Profil</a></li>
+                    <li class="nav-item"><a class="nav-link @(aktifSayfa == "/Privacy" ? "aktif" : "")" asp-area="" asp-page="/Privacy">Privacy</a></li>
+                </ul>
+            </nav>
+
+            <main role="main" class="col-12 col-md-9 col-lg-10 pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        }
     </div>
 
 

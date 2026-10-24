@@ -1,0 +1,48 @@
+/* Film kartı stilleri (sadece _FilmKarti.cshtml içindeki etiketlere uygulanır) */
+
+.film-karti {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+    .film-karti .card-title {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-bottom: 0.2rem;
+    }
+
+    .film-karti .card-text {
+        color: #9ab;
+        font-size: 0.75rem;
+    }
+
+.puan {
+    color: #00c030;
+    font-size: 0.8rem;
+}
+
+/* Afiş: 2'ye 3 oranında, Letterboxd'deki gibi ince çerçeve */
+.afis {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgba(221, 238, 255, 0.25), 0 2px 6px rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+}
+
+    .afis:hover {
+        border-color: #00c030;
+    }
+
+/* Afiş adresi olmayan filmler için yedek kutu */
+.afis-yok {
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: linear-gradient(160deg, #445566, #14181c);
+}

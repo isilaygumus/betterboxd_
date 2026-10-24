@@ -46,3 +46,35 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* Sol menü. Linkler asp-page ile üretildiği için scoped CSS'in
+   onlara ulaşması için "::deep" gerekiyor. */
+.sol-menu ::deep .nav-link {
+    color: #9ab;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+}
+
+    .sol-menu ::deep .nav-link:hover {
+        color: #fff;
+        background-color: #2c3440;
+    }
+
+    .sol-menu ::deep .nav-link.aktif {
+        color: #fff;
+        border-left: 3px solid #00c030;
+    }
+
+/* Üst menü (Log in sayfası): linkler ve alt çizgi sol menüyle aynı renkte */
+/* Bootstrap'in border-bottom sınıfı rengi bu değişkenden alıyor */
+.ust-menu {
+    --bs-border-color: #9ab;
+}
+
+.ust-menu ::deep .nav-link {
+    color: #9ab;
+}
+
+    .ust-menu ::deep .nav-link:hover {
+        color: #fff;
+    }
