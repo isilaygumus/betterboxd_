@@ -1,29 +1,83 @@
-﻿@page
+@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
-<html>
+<!-- Üst çubukta, logonun sağındaki küçük arama (şimdilik sadece görünüm, arama yapmıyor) -->
+@section UstArama {
+    <div class="ust-arama d-flex flex-wrap gap-2 ms-auto">
+        <input type="text" class="form-control form-control-sm" placeholder="Film bul..." />
+        <button type="button" class="btn btn-yesil btn-sm">Ara</button>
+    </div>
+}
 
-<head>
-    
+<!-- En yüksek puanlı filmler -->
+<section class="mb-5">
+    <h2 class="bolum-baslik">En yüksek puanlılar</h2>
+    <div class="row g-2">
+        @foreach (var film in Model.EnYuksekPuanlilar)
+        {
+            <div class="col-4 col-md-2">
+                <partial name="_FilmKarti" model="film" />
+            </div>
+        }
+    </div>
+</section>
 
-</head>
-<body>
-    
-    <main>
-        <section class="hero">
-            <h1>Track films you've watched. Save those you want to see. Tell your friends what's good.</h1>
-            <button class="btn btn-primary mt-4">Bootstrap Test Butonu</button>
-          
-        </section>
+<!-- Son eklenen filmler -->
+<section class="mb-5">
+    <h2 class="bolum-baslik">Son eklenen filmler</h2>
+    <div class="row g-2">
+        @foreach (var film in Model.SonEklenenler)
+        {
+            <div class="col-4 col-md-2">
+                <partial name="_FilmKarti" model="film" />
+            </div>
+        }
+    </div>
+</section>
 
-        <section class="film-grid">
-           
-            
-        </section>
-    </main>
+<!-- Letterboxd'deki "Letterboxd lets you..." kutuları -->
+<section class="mb-5">
+    <h2 class="bolum-baslik">Betterboxd ile şunları yapabilirsin...</h2>
+    <div class="row g-3">
+        <div class="col-12 col-md-4">
+            <div class="ozellik">
+                <div class="ikon">✎</div>
+                <h3>Yorum yaz</h3>
+                <p>İzlediğin filmler hakkında düşüncelerini paylaş.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="ozellik">
+                <div class="ikon">☰</div>
+                <h3>Liste oluştur</h3>
+                <p>Favori filmlerini ve izleme listeni bir araya topla.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="ozellik">
+                <div class="ikon">★</div>
+                <h3>Puan ver</h3>
+                <p>Filmleri beş yıldız üzerinden puanla.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-</body>
-</html>
+<!-- Tüm filmler -->
+<section class="mb-5">
+    <h2 class="bolum-baslik">Filmler <span class="float-end">@Model.ToplamFilmSayisi film</span></h2>
+
+    <div class="row g-3">
+        @foreach (var film in Model.Filmler)
+        {
+            <div class="col-4 col-lg-3">
+                <partial name="_FilmKarti" model="film" />
+            </div>
+        }
+    </div>
+</section>
+
+<p class="kaynak">Film afişleri ve görseller <a href="https://www.themoviedb.org" target="_blank">TMDB</a>'den alınmıştır.</p>
