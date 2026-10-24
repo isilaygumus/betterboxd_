@@ -18,8 +18,8 @@
         // Şu an açık olan sayfa (ör. "/Index"), menüde o linki işaretlemek için
         var aktifSayfa = ViewContext.RouteData.Values["page"]?.ToString();
 
-        // Sayfa ViewData["MenuUstte"] verdiyse menü üstte yatay, vermediyse solda alt alta
-        var menuUstte = ViewData["MenuUstte"] != null;
+        // Ana sayfada menü solda alt alta, diğer tüm sayfalarda üstte yatay
+        var menuUstte = aktifSayfa != "/Index";
     }
 
     <header>
@@ -30,7 +30,7 @@
                 @* Sayfa isterse üst çubuğa kendi içeriğini koyabilir (ör. ana sayfadaki arama kutusu) *@
                 @await RenderSectionAsync("UstArama", required: false)
 
-                @* Sayfa ViewData["MenuUstte"] verirse menü solda değil, burada yatay gösterilir (ör. Log in sayfası) *@
+                @* Ana sayfa dışındaki sayfalarda menü solda değil, burada yatay gösterilir *@
                 @if (menuUstte)
                 {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
