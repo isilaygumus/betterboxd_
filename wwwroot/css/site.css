@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    background-color:  !important;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -12,13 +13,19 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+.costum-navbar {
+    background-color: #14181C
+}
+
 html {
-  position: relative;
-  min-height: 100%;
+    background-color: #1b2228 !important;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #1b2228 !important;
+    margin-bottom: 60px;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
