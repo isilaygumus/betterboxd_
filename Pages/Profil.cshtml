@@ -1,37 +1,81 @@
 ﻿@page
 @model betterboxd_web.Pages.ProfilModel
 @{
+    ViewData["Title"] = "Profil";
 }
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Betterboxd</title>
-        <script type="importmap"></script>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/betterboxd_web.styles.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    </head>
-    <body>
- <main>
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+
+
+<div class="container text-light mt-5">
+    
+    <div class="row align-items-center pb-4 mb-5 border-bottom border-secondary">
         
-        <div class="profile-header">
-                <h3 class="card-title mb-4 text-custom-label fw-bold">Kullanıcı Adı</h3>
-                <div class="profile-info">
-                   
-                    <p>bio</p>
-                    <button>Edit Profile</button>
-                </div>
-        </div>
-        <div class="profile-body">
-                <h2 class="card-title mb-4 text-custom-label fw-bold">Favoriler</h2>
-            <div class="movie-list">
-               
+        <div class="col-md-2 text-center mb-3 mb-md-0">
+            <div class="profile-avatar-placeholder rounded-circle bg-secondary d-flex align-items-center justify-content-center mx-auto" style="width: 100px; height: 100px;">
+                <span class="fs-1 text-white">@(Model.Username?.Substring(0, 1).ToUpper() ?? "U")</span>
             </div>
         </div>
 
         
-    </main>
-    </body>
-</html>
+        <div class="col-md-7">
+            <h3 class="card-title mb-1 text-custom-label fw-bold">@(Model.Username ?? "Kullanıcı Adı")</h3>
+            <p class="text-muted mb-3">@@@(Model.Username?.ToLower() ?? "kullanici")</p>
+            <p class="bio-text text-light">@(Model.Bio ?? "Henüz bir biyografi eklenmedi...")</p>
+        </div>
+
+        
+        <div class="col-md-3 text-md-end mt-3 mt-md-0">
+   
+            <a asp-page="/EditProfile" class="btn btn-outline-light btn-sm px-4 py-2 btn-custom-submit  rounded-pill">Edit Profile</a>
+        </div>
+    </div>
+
+    
+    <div class="profile-body">
+        <h4 class="card-title mb-4 text-custom-label fw-bold text-uppercase tracking-wider">Favoriler</h4>
+
+        <div class="row g-3 movie-list">
+            @if (Model.FavoriteMovies != null && Model.FavoriteMovies.Any())
+            @* 
+               
+            *@
+            {
+                
+            }
+            else
+            {
+                
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <div class="col-6 col-sm-3">
+                        <div class="favorite-slot rounded bg-dark border border-secondary d-flex align-items-center justify-content-center text-muted" style="height: 220px;">
+                            <span class="small">Film @i</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+<style>
+    body {
+        background-color: #1b2228 !important; 
+        color: #9ab;
+    }
+    .text-custom-label {
+        color: #fff;
+    }
+    .favorite-slot {
+        transition: transform 0.2s ease, border-color 0.2s ease;
+        cursor: pointer;
+       
+        
+    }
+    .favorite-slot:hover {
+        transform: scale(1.03);
+            border-color: #00c030 !important; 
+            
+    }
+</style>
