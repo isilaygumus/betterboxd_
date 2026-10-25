@@ -9,7 +9,7 @@ ASP.NET Core Razor Pages ve Entity Framework Core ile geliştiriliyor.
 - **Giriş ve kayıt sayfaları:** Kullanıcı adı/e-posta ve şifre alanları, form doğrulamaları ve Türkçe hata mesajları hazır. Şimdilik form gönderilince ana sayfaya yönlendiriyor, gerçek üyelik sistemi (Identity) sonraki adımda eklenecek.
 - **Profil sayfası:** Kullanıcı adı, biyografi ve favori filmler için alanlar içeren profil tasarımı yapıldı.
 - **Tema ve renkler:** Sitenin genel renkleri koyu temaya uygun şekilde düzenlendi.
-- **Veritabanı:** EF Core ile `Film` ve `Tur` tabloları oluşturuldu. Bir türün birden fazla filmi olabiliyor (bire-çok ilişki). Migration'lar projede mevcut.
+- **Veritabanı**: EF Core ile `Film` ve `Tur` tabloları oluşturuldu. Bir türün birden fazla filmi olabiliyor (bire-çok ilişki). Migration'lar projede mevcut.
 - **Örnek veriler:** Sayfalar boş görünmesin diye Letterboxd'de popüler olan 20 film ve 8 tür eklendi. Afişler TMDB'den çekiliyor.
 - **Ana sayfa:** Filmler artık veritabanından geliyor. Ana sayfada şu bölümler var:
   - En yüksek puanlı filmler
@@ -26,21 +26,6 @@ ASP.NET Core Razor Pages ve Entity Framework Core ile geliştiriliyor.
 - Kullanıcıların kendi film listelerini oluşturması
 - Profil düzenleme sayfası
 - Film ve liste sayfalarının ayrı ayrı hazırlanması
-
-## Çalıştırmak için
-
-Gereksinimler: .NET 10 SDK ve SQL Server LocalDB (Visual Studio ile birlikte geliyor).
-
-```bash
-git clone https://github.com/isilaygumus/betterboxd_.git
-cd betterboxd_
-dotnet ef database update
-dotnet run
-```
-
-Sonrasında tarayıcıdan `http://localhost:5277` adresine girebilirsin.
-
-> `dotnet ef` komutu yoksa önce `dotnet tool install --global dotnet-ef` ile kurman gerekiyor. Bağlantı ayarları `appsettings.json` içinde.
 
 ## Kullanılan teknolojiler
 
