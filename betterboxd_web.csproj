@@ -4,6 +4,7 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>c555f7e3-0d87-46ec-916a-63748493ddde</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,7 +13,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.13" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.13">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
