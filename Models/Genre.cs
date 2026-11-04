@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace betterboxd_web.Models
 {
-    public class Tur
+    public class Genre
     {
         public int Id { get; set; }
 
@@ -11,6 +11,6 @@ namespace betterboxd_web.Models
         public string Ad { get; set; } = string.Empty;
 
         // Bire-çok ilişki: bir türün birden çok filmi olabilir
-        public List<Film> Filmler { get; set; } = new();
+        public List<Movie> Movies { get; set; } = new();
     }
 }

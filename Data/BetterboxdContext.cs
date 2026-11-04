@@ -9,50 +9,48 @@ namespace betterboxd_web.Data
         {
         }
 
-        public DbSet<Film> Filmler { get; set; }
-        public DbSet<Tur> Turler { get; set; }
+        public DbSet<Movie> Filmler { get; set; }
+        public DbSet<Genre> Turler { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // Örnek veriler: sayfa boş görünmesin diye
-            modelBuilder.Entity<Tur>().HasData(
-                new Tur { Id = 1, Ad = "Dram" },
-                new Tur { Id = 2, Ad = "Bilim Kurgu" },
-                new Tur { Id = 3, Ad = "Suç" },
-                new Tur { Id = 4, Ad = "Animasyon" },
-                new Tur { Id = 5, Ad = "Komedi" },
-                new Tur { Id = 6, Ad = "Korku" },
-                new Tur { Id = 7, Ad = "Romantik" },
-                new Tur { Id = 8, Ad = "Gerilim" }
+            modelBuilder.Entity<Genre>().HasData(
+                new Genre { Id = 1, Ad = "Dram" },
+                new Genre { Id = 2, Ad = "Bilim Kurgu" },
+                new Genre { Id = 3, Ad = "Suç" },
+                new Genre { Id = 4, Ad = "Animasyon" },
+                new Genre { Id = 5, Ad = "Komedi" },
+                new Genre { Id = 6, Ad = "Korku" },
+                new Genre { Id = 7, Ad = "Romantik" },
+                new Genre { Id = 8, Ad = "Gerilim" }
             );
 
-            // Afişler TMDB'den (The Movie Database) geliyor, adresin başı hep aynı
             const string afis = "https://image.tmdb.org/t/p/w342";
 
-            // Letterboxd'nin popüler filmleri (puanlar yaklaşık, örnek amaçlı)
-            modelBuilder.Entity<Film>().HasData(
-                new Film { Id = 1, Ad = "Parazit", Yonetmen = "Bong Joon-ho", Yil = 2019, Puan = 4.5m, TurId = 8, EklenmeTarihi = new DateTime(2026, 9, 1), AfisUrl = afis + "/nx7TmJDMkgyBc09DVo5ze52Wt3F.jpg" },
-                new Film { Id = 2, Ad = "Yıldızlararası", Yonetmen = "Christopher Nolan", Yil = 2014, Puan = 4.4m, TurId = 2, EklenmeTarihi = new DateTime(2026, 9, 3), AfisUrl = afis + "/xbiycuc84TrieEWwkkuH2hoEa9S.jpg" },
-                new Film { Id = 3, Ad = "Dövüş Kulübü", Yonetmen = "David Fincher", Yil = 1999, Puan = 4.3m, TurId = 1, EklenmeTarihi = new DateTime(2026, 9, 5), AfisUrl = afis + "/yjMuqAyJUoQZGWsZ0vZuYj5inAR.jpg" },
-                new Film { Id = 4, Ad = "Aşıklar Şehri", Yonetmen = "Damien Chazelle", Yil = 2016, Puan = 4.1m, TurId = 7, EklenmeTarihi = new DateTime(2026, 9, 7), AfisUrl = afis + "/xDBZNak6HyOEjKIbrjqDxllWXRn.jpg" },
-                new Film { Id = 5, Ad = "Ucuz Roman", Yonetmen = "Quentin Tarantino", Yil = 1994, Puan = 4.3m, TurId = 3, EklenmeTarihi = new DateTime(2026, 9, 9), AfisUrl = afis + "/AgY33Wtg4737MhYopJSFyKWhKsO.jpg" },
-                new Film { Id = 6, Ad = "Baba", Yonetmen = "Francis Ford Coppola", Yil = 1972, Puan = 4.5m, TurId = 3, EklenmeTarihi = new DateTime(2026, 9, 11), AfisUrl = afis + "/vseIVRdN4xasYwStQIi6SI7DcEu.jpg" },
-                new Film { Id = 7, Ad = "Whiplash", Yonetmen = "Damien Chazelle", Yil = 2014, Puan = 4.5m, TurId = 1, EklenmeTarihi = new DateTime(2026, 9, 13), AfisUrl = afis + "/q3Ev5vIC3fklycV9kfpVIdbRe14.jpg" },
-                new Film { Id = 8, Ad = "Ruhların Kaçışı", Yonetmen = "Hayao Miyazaki", Yil = 2001, Puan = 4.5m, TurId = 4, EklenmeTarihi = new DateTime(2026, 9, 15), AfisUrl = afis + "/xvOEOMCzfV8qXkd1n1btZ8q4Psd.jpg" },
-                new Film { Id = 9, Ad = "Her Şey Her Yerde Aynı Anda", Yonetmen = "Daniel Kwan, Daniel Scheinert", Yil = 2022, Puan = 4.3m, TurId = 2, EklenmeTarihi = new DateTime(2026, 9, 17), AfisUrl = afis + "/vt5Fd1wouNEL7HN3TQ0PMls4auE.jpg" },
-                new Film { Id = 10, Ad = "Barbie", Yonetmen = "Greta Gerwig", Yil = 2023, Puan = 3.7m, TurId = 5, EklenmeTarihi = new DateTime(2026, 9, 19), AfisUrl = afis + "/iPtla6hJOerwsgw0zMxyEI6pR3Q.jpg" },
-                new Film { Id = 11, Ad = "Oppenheimer", Yonetmen = "Christopher Nolan", Yil = 2023, Puan = 4.2m, TurId = 1, EklenmeTarihi = new DateTime(2026, 9, 21), AfisUrl = afis + "/mmZi0tyPFfbcCqEsJIPxVldCPOL.jpg" },
-                new Film { Id = 12, Ad = "Dune: Çöl Gezegeni Bölüm İki", Yonetmen = "Denis Villeneuve", Yil = 2024, Puan = 4.4m, TurId = 2, EklenmeTarihi = new DateTime(2026, 9, 23), AfisUrl = afis + "/tihf8Trht9zP3scmUQfvGlAY9FU.jpg" },
-                new Film { Id = 13, Ad = "Başka Bir Hayatta", Yonetmen = "Celine Song", Yil = 2023, Puan = 4.2m, TurId = 7, EklenmeTarihi = new DateTime(2026, 9, 25), AfisUrl = afis + "/ndE4NbhoNGFcnICbkhvpExdFp8W.jpg" },
-                new Film { Id = 14, Ad = "Kapan", Yonetmen = "Jordan Peele", Yil = 2017, Puan = 4.1m, TurId = 6, EklenmeTarihi = new DateTime(2026, 9, 27), AfisUrl = afis + "/2Uo7WiwHKb27i8Qskqy4arxaoLz.jpg" },
-                new Film { Id = 15, Ad = "Kara Şövalye", Yonetmen = "Christopher Nolan", Yil = 2008, Puan = 4.5m, TurId = 3, EklenmeTarihi = new DateTime(2026, 9, 29), AfisUrl = afis + "/7IPCEr7ifdH5CtU97QG7XgAAtOp.jpg" },
-                new Film { Id = 16, Ad = "Büyük Budapeşte Oteli", Yonetmen = "Wes Anderson", Yil = 2014, Puan = 4.2m, TurId = 5, EklenmeTarihi = new DateTime(2026, 10, 1), AfisUrl = afis + "/hYdclrAOjWtxTgE7PZy102hTYAf.jpg" },
-                new Film { Id = 17, Ad = "Güneş Sonrası", Yonetmen = "Charlotte Wells", Yil = 2022, Puan = 4.2m, TurId = 1, EklenmeTarihi = new DateTime(2026, 10, 3), AfisUrl = afis + "/cfW5wPV3cO01ObD6WeQ8fagImzt.jpg" },
-                new Film { Id = 18, Ad = "Ritüel", Yonetmen = "Ari Aster", Yil = 2019, Puan = 3.9m, TurId = 6, EklenmeTarihi = new DateTime(2026, 10, 5), AfisUrl = afis + "/4hUSc9oKcudbYOyt8EVP65LnaQV.jpg" },
-                new Film { Id = 19, Ad = "Yaman Tilki", Yonetmen = "Wes Anderson", Yil = 2009, Puan = 4.2m, TurId = 4, EklenmeTarihi = new DateTime(2026, 10, 7), AfisUrl = afis + "/yfQJWTnARrunzLFjKnU89z6GZv6.jpg" },
-                new Film { Id = 20, Ad = "Uğur Böceği", Yonetmen = "Greta Gerwig", Yil = 2017, Puan = 3.9m, TurId = 5, EklenmeTarihi = new DateTime(2026, 10, 9), AfisUrl = afis + "/5aKzS6YqMIAOOJwtNzLgB7vt9xE.jpg" }
+            modelBuilder.Entity<Movie>().HasData(
+                new Movie { Id = 1, Title = "Parazit", Director = "Bong Joon-ho", Year = 2019, Rating = 4.5m, GenreId = 8, AddedDate = new DateTime(2026, 9, 1), PosterUrl = afis + "/nx7TmJDMkgyBc09DVo5ze52Wt3F.jpg" },
+                new Movie { Id = 2, Title = "Yıldızlararası", Director = "Christopher Nolan", Year = 2014, Rating = 4.4m, GenreId = 2, AddedDate = new DateTime(2026, 9, 3), PosterUrl = afis + "/xbiycuc84TrieEWwkkuH2hoEa9S.jpg" },
+                new Movie { Id = 3, Title = "Dövüş Kulübü", Director = "David Fincher", Year = 1999, Rating = 4.3m, GenreId = 1, AddedDate = new DateTime(2026, 9, 5), PosterUrl = afis + "/yjMuqAyJUoQZGWsZ0vZuYj5inAR.jpg" },
+                new Movie { Id = 4, Title = "Aşıklar Şehri", Director = "Damien Chazelle", Year = 2016, Rating = 4.1m, GenreId = 7, AddedDate = new DateTime(2026, 9, 7), PosterUrl = afis + "/xDBZNak6HyOEjKIbrjqDxllWXRn.jpg" },
+                new Movie { Id = 5, Title = "Ucuz Roman", Director = "Quentin Tarantino", Year = 1994, Rating = 4.3m, GenreId = 3, AddedDate = new DateTime(2026, 9, 9), PosterUrl = afis + "/AgY33Wtg4737MhYopJSFyKWhKsO.jpg" },
+                new Movie { Id = 6, Title = "Baba", Director = "Francis Ford Coppola", Year = 1972, Rating = 4.5m, GenreId = 3, AddedDate = new DateTime(2026, 9, 11), PosterUrl = afis + "/vseIVRdN4xasYwStQIi6SI7DcEu.jpg" },
+                new Movie { Id = 7, Title = "Whiplash", Director = "Damien Chazelle", Year = 2014, Rating = 4.5m, GenreId = 1, AddedDate = new DateTime(2026, 9, 13), PosterUrl = afis + "/q3Ev5vIC3fklycV9kfpVIdbRe14.jpg" },
+                new Movie { Id = 8, Title = "Ruhların Kaçışı", Director = "Hayao Miyazaki", Year = 2001, Rating = 4.5m, GenreId = 4, AddedDate = new DateTime(2026, 9, 15), PosterUrl = afis + "/xvOEOMCzfV8qXkd1n1btZ8q4Psd.jpg" },
+                new Movie { Id = 9, Title = "Her Şey Her Yerde Aynı Anda", Director = "Daniel Kwan, Daniel Scheinert", Year = 2022, Rating = 4.3m, GenreId = 2, AddedDate = new DateTime(2026, 9, 17), PosterUrl = afis + "/vt5Fd1wouNEL7HN3TQ0PMls4auE.jpg" },
+                new Movie { Id = 10, Title = "Barbie", Director = "Greta Gerwig", Year = 2023, Rating = 3.7m, GenreId = 5, AddedDate = new DateTime(2026, 9, 19), PosterUrl = afis + "/iPtla6hJOerwsgw0zMxyEI6pR3Q.jpg" },
+                new Movie { Id = 11, Title = "Oppenheimer", Director = "Christopher Nolan", Year = 2023, Rating = 4.2m, GenreId = 1, AddedDate = new DateTime(2026, 9, 21), PosterUrl = afis + "/mmZi0tyPFfbcCqEsJIPxVldCPOL.jpg" },
+                new Movie { Id = 12, Title = "Dune: Çöl Gezegeni Bölüm İki", Director = "Denis Villeneuve", Year = 2024, Rating = 4.4m, GenreId = 2, AddedDate = new DateTime(2026, 9, 23), PosterUrl = afis + "/tihf8Trht9zP3scmUQfvGlAY9FU.jpg" },
+                new Movie { Id = 13, Title = "Başka Bir Hayatta", Director = "Celine Song", Year = 2023, Rating = 4.2m, GenreId = 7, AddedDate = new DateTime(2026, 9, 25), PosterUrl = afis + "/ndE4NbhoNGFcnICbkhvpExdFp8W.jpg" },
+                new Movie { Id = 14, Title = "Kapan", Director = "Jordan Peele", Year = 2017, Rating = 4.1m, GenreId = 6, AddedDate = new DateTime(2026, 9, 27), PosterUrl = afis + "/2Uo7WiwHKb27i8Qskqy4arxaoLz.jpg" },
+                new Movie { Id = 15, Title = "Kara Şövalye", Director = "Christopher Nolan", Year = 2008, Rating = 4.5m, GenreId = 3, AddedDate = new DateTime(2026, 9, 29), PosterUrl = afis + "/7IPCEr7ifdH5CtU97QG7XgAAtOp.jpg" },
+                new Movie { Id = 16, Title = "Büyük Budapeşte Oteli", Director = "Wes Anderson", Year = 2014, Rating = 4.2m, GenreId = 5, AddedDate = new DateTime(2026, 10, 1), PosterUrl = afis + "/hYdclrAOjWtxTgE7PZy102hTYAf.jpg" },
+                new Movie { Id = 17, Title = "Güneş Sonrası", Director = "Charlotte Wells", Year = 2022, Rating = 4.2m, GenreId = 1, AddedDate = new DateTime(2026, 10, 3), PosterUrl = afis + "/cfW5wPV3cO01ObD6WeQ8fagImzt.jpg" },
+                new Movie { Id = 18, Title = "Ritüel", Director = "Ari Aster", Year = 2019, Rating = 3.9m, GenreId = 6, AddedDate = new DateTime(2026, 10, 5), PosterUrl = afis + "/4hUSc9oKcudbYOyt8EVP65LnaQV.jpg" },
+                new Movie { Id = 19, Title = "Yaman Tilki", Director = "Wes Anderson", Year = 2009, Rating = 4.2m, GenreId = 4, AddedDate = new DateTime(2026, 10, 7), PosterUrl = afis + "/yfQJWTnARrunzLFjKnU89z6GZv6.jpg" },
+                new Movie { Id = 20, Title = "Uğur Böceği", Director = "Greta Gerwig", Year = 2017, Rating = 3.9m, GenreId = 5, AddedDate = new DateTime(2026, 10, 9), PosterUrl = afis + "/5aKzS6YqMIAOOJwtNzLgB7vt9xE.jpg" }
             );
         }
     }

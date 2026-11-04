@@ -22,270 +22,7 @@ namespace betterboxd_web.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("betterboxd_web.Models.Film", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Ad")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("AfisUrl")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
-
-                    b.Property<DateTime>("EklenmeTarihi")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<decimal>("Puan")
-                        .HasColumnType("decimal(2,1)");
-
-                    b.Property<int>("TurId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Yil")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Yonetmen")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TurId");
-
-                    b.ToTable("Filmler");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ad = "Parazit",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/nx7TmJDMkgyBc09DVo5ze52Wt3F.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.5m,
-                            TurId = 8,
-                            Yil = 2019,
-                            Yonetmen = "Bong Joon-ho"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Ad = "Yıldızlararası",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/xbiycuc84TrieEWwkkuH2hoEa9S.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.4m,
-                            TurId = 2,
-                            Yil = 2014,
-                            Yonetmen = "Christopher Nolan"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Ad = "Dövüş Kulübü",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/yjMuqAyJUoQZGWsZ0vZuYj5inAR.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.3m,
-                            TurId = 1,
-                            Yil = 1999,
-                            Yonetmen = "David Fincher"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Ad = "Aşıklar Şehri",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/xDBZNak6HyOEjKIbrjqDxllWXRn.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.1m,
-                            TurId = 7,
-                            Yil = 2016,
-                            Yonetmen = "Damien Chazelle"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Ad = "Ucuz Roman",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/AgY33Wtg4737MhYopJSFyKWhKsO.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.3m,
-                            TurId = 3,
-                            Yil = 1994,
-                            Yonetmen = "Quentin Tarantino"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Ad = "Baba",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/vseIVRdN4xasYwStQIi6SI7DcEu.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.5m,
-                            TurId = 3,
-                            Yil = 1972,
-                            Yonetmen = "Francis Ford Coppola"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Ad = "Whiplash",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/q3Ev5vIC3fklycV9kfpVIdbRe14.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.5m,
-                            TurId = 1,
-                            Yil = 2014,
-                            Yonetmen = "Damien Chazelle"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Ad = "Ruhların Kaçışı",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/xvOEOMCzfV8qXkd1n1btZ8q4Psd.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.5m,
-                            TurId = 4,
-                            Yil = 2001,
-                            Yonetmen = "Hayao Miyazaki"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Ad = "Her Şey Her Yerde Aynı Anda",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/vt5Fd1wouNEL7HN3TQ0PMls4auE.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.3m,
-                            TurId = 2,
-                            Yil = 2022,
-                            Yonetmen = "Daniel Kwan, Daniel Scheinert"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Ad = "Barbie",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/iPtla6hJOerwsgw0zMxyEI6pR3Q.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 3.7m,
-                            TurId = 5,
-                            Yil = 2023,
-                            Yonetmen = "Greta Gerwig"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Ad = "Oppenheimer",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/mmZi0tyPFfbcCqEsJIPxVldCPOL.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.2m,
-                            TurId = 1,
-                            Yil = 2023,
-                            Yonetmen = "Christopher Nolan"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Ad = "Dune: Çöl Gezegeni Bölüm İki",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/tihf8Trht9zP3scmUQfvGlAY9FU.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.4m,
-                            TurId = 2,
-                            Yil = 2024,
-                            Yonetmen = "Denis Villeneuve"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Ad = "Başka Bir Hayatta",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/ndE4NbhoNGFcnICbkhvpExdFp8W.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.2m,
-                            TurId = 7,
-                            Yil = 2023,
-                            Yonetmen = "Celine Song"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Ad = "Kapan",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/2Uo7WiwHKb27i8Qskqy4arxaoLz.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.1m,
-                            TurId = 6,
-                            Yil = 2017,
-                            Yonetmen = "Jordan Peele"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Ad = "Kara Şövalye",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/7IPCEr7ifdH5CtU97QG7XgAAtOp.jpg",
-                            EklenmeTarihi = new DateTime(2026, 9, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.5m,
-                            TurId = 3,
-                            Yil = 2008,
-                            Yonetmen = "Christopher Nolan"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Ad = "Büyük Budapeşte Oteli",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/hYdclrAOjWtxTgE7PZy102hTYAf.jpg",
-                            EklenmeTarihi = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.2m,
-                            TurId = 5,
-                            Yil = 2014,
-                            Yonetmen = "Wes Anderson"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Ad = "Güneş Sonrası",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/cfW5wPV3cO01ObD6WeQ8fagImzt.jpg",
-                            EklenmeTarihi = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.2m,
-                            TurId = 1,
-                            Yil = 2022,
-                            Yonetmen = "Charlotte Wells"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Ad = "Ritüel",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/4hUSc9oKcudbYOyt8EVP65LnaQV.jpg",
-                            EklenmeTarihi = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 3.9m,
-                            TurId = 6,
-                            Yil = 2019,
-                            Yonetmen = "Ari Aster"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Ad = "Yaman Tilki",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/yfQJWTnARrunzLFjKnU89z6GZv6.jpg",
-                            EklenmeTarihi = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 4.2m,
-                            TurId = 4,
-                            Yil = 2009,
-                            Yonetmen = "Wes Anderson"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Ad = "Uğur Böceği",
-                            AfisUrl = "https://image.tmdb.org/t/p/w342/5aKzS6YqMIAOOJwtNzLgB7vt9xE.jpg",
-                            EklenmeTarihi = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Puan = 3.9m,
-                            TurId = 5,
-                            Yil = 2017,
-                            Yonetmen = "Greta Gerwig"
-                        });
-                });
-
-            modelBuilder.Entity("betterboxd_web.Models.Tur", b =>
+            modelBuilder.Entity("betterboxd_web.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -345,20 +82,283 @@ namespace betterboxd_web.Migrations
                         });
                 });
 
-            modelBuilder.Entity("betterboxd_web.Models.Film", b =>
+            modelBuilder.Entity("betterboxd_web.Models.Movie", b =>
                 {
-                    b.HasOne("betterboxd_web.Models.Tur", "Tur")
-                        .WithMany("Filmler")
-                        .HasForeignKey("TurId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PosterUrl")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<decimal>("Rating")
+                        .HasColumnType("decimal(2,1)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("Filmler");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddedDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Bong Joon-ho",
+                            GenreId = 8,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/nx7TmJDMkgyBc09DVo5ze52Wt3F.jpg",
+                            Rating = 4.5m,
+                            Title = "Parazit",
+                            Year = 2019
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddedDate = new DateTime(2026, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Christopher Nolan",
+                            GenreId = 2,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/xbiycuc84TrieEWwkkuH2hoEa9S.jpg",
+                            Rating = 4.4m,
+                            Title = "Yıldızlararası",
+                            Year = 2014
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddedDate = new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "David Fincher",
+                            GenreId = 1,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/yjMuqAyJUoQZGWsZ0vZuYj5inAR.jpg",
+                            Rating = 4.3m,
+                            Title = "Dövüş Kulübü",
+                            Year = 1999
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddedDate = new DateTime(2026, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Damien Chazelle",
+                            GenreId = 7,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/xDBZNak6HyOEjKIbrjqDxllWXRn.jpg",
+                            Rating = 4.1m,
+                            Title = "Aşıklar Şehri",
+                            Year = 2016
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddedDate = new DateTime(2026, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Quentin Tarantino",
+                            GenreId = 3,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/AgY33Wtg4737MhYopJSFyKWhKsO.jpg",
+                            Rating = 4.3m,
+                            Title = "Ucuz Roman",
+                            Year = 1994
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddedDate = new DateTime(2026, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Francis Ford Coppola",
+                            GenreId = 3,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/vseIVRdN4xasYwStQIi6SI7DcEu.jpg",
+                            Rating = 4.5m,
+                            Title = "Baba",
+                            Year = 1972
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AddedDate = new DateTime(2026, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Damien Chazelle",
+                            GenreId = 1,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/q3Ev5vIC3fklycV9kfpVIdbRe14.jpg",
+                            Rating = 4.5m,
+                            Title = "Whiplash",
+                            Year = 2014
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AddedDate = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Hayao Miyazaki",
+                            GenreId = 4,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/xvOEOMCzfV8qXkd1n1btZ8q4Psd.jpg",
+                            Rating = 4.5m,
+                            Title = "Ruhların Kaçışı",
+                            Year = 2001
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AddedDate = new DateTime(2026, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Daniel Kwan, Daniel Scheinert",
+                            GenreId = 2,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/vt5Fd1wouNEL7HN3TQ0PMls4auE.jpg",
+                            Rating = 4.3m,
+                            Title = "Her Şey Her Yerde Aynı Anda",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AddedDate = new DateTime(2026, 9, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Greta Gerwig",
+                            GenreId = 5,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/iPtla6hJOerwsgw0zMxyEI6pR3Q.jpg",
+                            Rating = 3.7m,
+                            Title = "Barbie",
+                            Year = 2023
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AddedDate = new DateTime(2026, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Christopher Nolan",
+                            GenreId = 1,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/mmZi0tyPFfbcCqEsJIPxVldCPOL.jpg",
+                            Rating = 4.2m,
+                            Title = "Oppenheimer",
+                            Year = 2023
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AddedDate = new DateTime(2026, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Denis Villeneuve",
+                            GenreId = 2,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/tihf8Trht9zP3scmUQfvGlAY9FU.jpg",
+                            Rating = 4.4m,
+                            Title = "Dune: Çöl Gezegeni Bölüm İki",
+                            Year = 2024
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AddedDate = new DateTime(2026, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Celine Song",
+                            GenreId = 7,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/ndE4NbhoNGFcnICbkhvpExdFp8W.jpg",
+                            Rating = 4.2m,
+                            Title = "Başka Bir Hayatta",
+                            Year = 2023
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AddedDate = new DateTime(2026, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Jordan Peele",
+                            GenreId = 6,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/2Uo7WiwHKb27i8Qskqy4arxaoLz.jpg",
+                            Rating = 4.1m,
+                            Title = "Kapan",
+                            Year = 2017
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AddedDate = new DateTime(2026, 9, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Christopher Nolan",
+                            GenreId = 3,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/7IPCEr7ifdH5CtU97QG7XgAAtOp.jpg",
+                            Rating = 4.5m,
+                            Title = "Kara Şövalye",
+                            Year = 2008
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AddedDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Wes Anderson",
+                            GenreId = 5,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/hYdclrAOjWtxTgE7PZy102hTYAf.jpg",
+                            Rating = 4.2m,
+                            Title = "Büyük Budapeşte Oteli",
+                            Year = 2014
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AddedDate = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Charlotte Wells",
+                            GenreId = 1,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/cfW5wPV3cO01ObD6WeQ8fagImzt.jpg",
+                            Rating = 4.2m,
+                            Title = "Güneş Sonrası",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AddedDate = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Ari Aster",
+                            GenreId = 6,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/4hUSc9oKcudbYOyt8EVP65LnaQV.jpg",
+                            Rating = 3.9m,
+                            Title = "Ritüel",
+                            Year = 2019
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AddedDate = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Wes Anderson",
+                            GenreId = 4,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/yfQJWTnARrunzLFjKnU89z6GZv6.jpg",
+                            Rating = 4.2m,
+                            Title = "Yaman Tilki",
+                            Year = 2009
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AddedDate = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Director = "Greta Gerwig",
+                            GenreId = 5,
+                            PosterUrl = "https://image.tmdb.org/t/p/w342/5aKzS6YqMIAOOJwtNzLgB7vt9xE.jpg",
+                            Rating = 3.9m,
+                            Title = "Uğur Böceği",
+                            Year = 2017
+                        });
+                });
+
+            modelBuilder.Entity("betterboxd_web.Models.Movie", b =>
+                {
+                    b.HasOne("betterboxd_web.Models.Genre", "Genre")
+                        .WithMany("Movies")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Tur");
+                    b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("betterboxd_web.Models.Tur", b =>
+            modelBuilder.Entity("betterboxd_web.Models.Genre", b =>
                 {
-                    b.Navigation("Filmler");
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

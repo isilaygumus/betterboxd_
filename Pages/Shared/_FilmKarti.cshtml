@@ -1,20 +1,20 @@
-@model betterboxd_web.Models.Film
+@model betterboxd_web.Models.Movie
 
 @* Tek bir film kartı: afiş, ad, yıl · yönetmen ve puan.
    Kullanımı: <partial name="_FilmKarti" model="film" /> *@
 
 <div class="card film-karti h-100">
-    @if (Model.AfisUrl != null)
+    @if (Model.PosterUrl != null)
     {
-        <img src="@Model.AfisUrl" alt="@Model.Ad" title="@Model.Ad (@Model.Yil)" class="afis" loading="lazy" />
+        <img src="@Model.PosterUrl" alt="@Model.Title" title="@Model.Title (@Model.Year)" class="afis" loading="lazy" />
     }
     else
     {
-        <div class="afis afis-yok"><span>@Model.Ad</span></div>
+        <div class="afis afis-yok"><span>@Model.Title</span></div>
     }
     <div class="card-body px-0 py-2">
-        <h5 class="card-title">@Model.Ad</h5>
-        <p class="card-text mb-1">@Model.Yil · @Model.Yonetmen</p>
-        <span class="puan">★ @Model.Puan</span>
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text mb-1">@Model.Year · @Model.Director</p>
+        <span class="puan">★ @Model.Rating</span>
     </div>
 </div>
