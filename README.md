@@ -11,7 +11,7 @@ ASP.NET Core Razor Pages ve Entity Framework Core ile geliştiriliyor.
 - **Tema ve renkler:** Sitenin genel renkleri koyu temaya uygun şekilde düzenlendi.(Işılay Gümüş)
 - **Veritabanı**: EF Core ile `Movie` ve `Tur` tabloları oluşturuldu. Bir türün birden fazla filmi olabiliyor (bire-çok ilişki). Migration'lar projede mevcut.(Zeynep Nida Erdem)
 - **Örnek veriler:** Sayfalar boş görünmesin diye Letterboxd'de popüler olan 20 film ve 8 tür eklendi. Afişler TMDB'den çekiliyor.(Zeynep Nida Erdem)
-- **Ana sayfa:** Filmler artık veritabanından geliyor. Ana sayfada şu bölümler var:(Zeynep Nida Erdem)
+- **Ana sayfa:** Movie artık veritabanından geliyor. Ana sayfada şu bölümler var:(Zeynep Nida Erdem)
   - En yüksek puanlı filmler
   - Son eklenen filmler
   - Sitede neler yapılabileceğini anlatan kısa bir tanıtım (yorum yazma, liste oluşturma, puan verme)

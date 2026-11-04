@@ -68,10 +68,10 @@
 
 <!-- Tüm filmler -->
 <section class="mb-5">
-    <h2 class="bolum-baslik">Filmler <span class="float-end">@Model.ToplamFilmSayisi film</span></h2>
+    <h2 class="bolum-baslik">Movie <span class="float-end">@Model.ToplamFilmSayisi film</span></h2>
 
     <div class="row g-3">
-        @foreach (var film in Model.Filmler)
+        @foreach (var film in Model.Movies)
         {
             <div class="col-4 col-lg-3">
                 <partial name="_FilmKarti" model="film" />

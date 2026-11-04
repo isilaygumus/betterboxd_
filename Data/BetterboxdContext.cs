@@ -1,23 +1,40 @@
 using betterboxd_web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace betterboxd_web.Data
+namespace betterboxd_web.Data;
+
+public class BetterboxdContext : IdentityDbContext<IdentityUser>
 {
-    public class BetterboxdContext : DbContext
+    //internal readonly object Movies;
+
+    public BetterboxdContext(DbContextOptions<BetterboxdContext> options) : base(options) { }
+
+    public DbSet<Movie> Movies { get; set; }
+    public DbSet<Genre> Genres { get; set; }
+    public DbSet<Review> Reviews { get; set; }
+    public DbSet<WatchlistItem> WatchlistItems { get; set; }
+    public DbSet<MovieList> Lists { get; set; }
+    public DbSet<ListMovie> ListMovies { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public BetterboxdContext(DbContextOptions<BetterboxdContext> options) : base(options)
-        {
-        }
+        base.OnModelCreating(modelBuilder); // Identity için şart
 
-        public DbSet<Movie> Filmler { get; set; }
-        public DbSet<Genre> Turler { get; set; }
+        modelBuilder.Entity<IdentityUser>().ToTable("Users");
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Review>().Property(r => r.Rating).HasPrecision(2, 1);
 
-            // Örnek veriler: sayfa boş görünmesin diye
-            modelBuilder.Entity<Genre>().HasData(
+        // Aynı film bir kullanıcının izleme listesine iki kez eklenemesin
+        modelBuilder.Entity<WatchlistItem>()
+            .HasIndex(w => new { w.UserId, w.MovieId }).IsUnique();
+
+        // Liste ile film arasındaki çoka-çok ilişki
+        modelBuilder.Entity<ListMovie>().HasKey(lm => new { lm.MovieListId, lm.MovieId }); 
+
+        // Örnek veriler: sayfa boş görünmesin diye
+        modelBuilder.Entity<Genre>().HasData(
                 new Genre { Id = 1, Ad = "Dram" },
                 new Genre { Id = 2, Ad = "Bilim Kurgu" },
                 new Genre { Id = 3, Ad = "Suç" },
@@ -52,6 +69,6 @@ namespace betterboxd_web.Data
                 new Movie { Id = 19, Title = "Yaman Tilki", Director = "Wes Anderson", Year = 2009, Rating = 4.2m, GenreId = 4, AddedDate = new DateTime(2026, 10, 7), PosterUrl = afis + "/yfQJWTnARrunzLFjKnU89z6GZv6.jpg" },
                 new Movie { Id = 20, Title = "Uğur Böceği", Director = "Greta Gerwig", Year = 2017, Rating = 3.9m, GenreId = 5, AddedDate = new DateTime(2026, 10, 9), PosterUrl = afis + "/5aKzS6YqMIAOOJwtNzLgB7vt9xE.jpg" }
             );
-        }
+        
     }
 }

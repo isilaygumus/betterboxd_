@@ -1,4 +1,5 @@
 using betterboxd_web.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -10,6 +11,9 @@ builder.Services.AddRazorPages();
 // Veritabanı bağlantısı (bağlantı cümlesi appsettings.json içinde)
 builder.Services.AddDbContext<BetterboxdContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("BetterboxdContext")));
+    builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<BetterboxdContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -25,6 +29,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

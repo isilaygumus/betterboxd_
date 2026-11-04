@@ -16,7 +16,7 @@ namespace betterboxd_web.Pages
         }
 
         // Sayfada gösterilecek listeler
-        public List<Movie> Filmler { get; set; } = new();
+        public List<Movie> Movies { get; set; } = new();
         public List<Movie> SonEklenenler { get; set; } = new();
         public List<Movie> EnYuksekPuanlilar { get; set; } = new();
         public int ToplamFilmSayisi { get; set; }
@@ -24,22 +24,22 @@ namespace betterboxd_web.Pages
         public async Task OnGetAsync()
         {
             // Toplam film sayısı
-            ToplamFilmSayisi = await _context.Filmler.CountAsync();
+            ToplamFilmSayisi = await _context.Movies.CountAsync();
 
             // Son eklenen 6 film
-            SonEklenenler = await _context.Filmler
+            SonEklenenler = await _context.Movies
                 .OrderByDescending(f => f.AddedDate)
                 .Take(6)
                 .ToListAsync();
 
             // En yüksek puanlı 6 film
-            EnYuksekPuanlilar = await _context.Filmler
+            EnYuksekPuanlilar = await _context.Movies
                 .OrderByDescending(f => f.Rating)
                 .Take(6)
                 .ToListAsync();
 
             // Tüm filmler, ada göre sıralı
-            Filmler = await _context.Filmler
+            Movies = await _context.Movies
                 .OrderBy(f => f.Title)
                 .ToListAsync();
         }
