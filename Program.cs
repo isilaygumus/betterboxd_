@@ -11,6 +11,9 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeFolder("/Admin", "AdminOnly");
 });
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 // Veritabanı bağlantısı (bağlantı cümlesi appsettings.json içinde)
 builder.Services.AddDbContext<BetterboxdContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("BetterboxdContext")));
@@ -81,5 +84,12 @@ app.UseAuthorization();
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
+app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.Run();
