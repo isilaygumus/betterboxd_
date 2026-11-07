@@ -1,3 +1,6 @@
 <Solution>
+  <Folder Name="/Çözüm Öğeleri/">
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Project Path="betterboxd_web.csproj" />
 </Solution>

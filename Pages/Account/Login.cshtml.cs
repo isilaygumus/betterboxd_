@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -6,6 +7,10 @@ namespace betterboxd_web.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly SignInManager<IdentityUser> _signInManager;
+        public LoginModel(SignInManager<IdentityUser> signInManager)
+            => _signInManager = signInManager;
+         
         [BindProperty]
         public InputModel Input { get; set; } = new();
 
@@ -25,15 +30,21 @@ namespace betterboxd_web.Pages.Account
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            // 1. Hafta geçici yönlendirmesi (Veritabanı/Identity 3. haftada eklenecek)
-            return RedirectToPage("/Index");
+            var result = await _signInManager.PasswordSignInAsync(
+                Input.UsernameOrEmail, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+            if (result.Succeeded)
+                return RedirectToPage("/Profil");
+
+            ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifresi hatalı.");
+            return Page();
+
         }
     }
 }
