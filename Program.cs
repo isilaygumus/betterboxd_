@@ -1,6 +1,7 @@
 using betterboxd_web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using betterboxd_web.Services;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddRazorPages(options =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddHttpClient<TmdbService>(client =>
+    client.BaseAddress = new Uri("https://api.themoviedb.org/3/"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Veritabanı bağlantısı (bağlantı cümlesi appsettings.json içinde)
