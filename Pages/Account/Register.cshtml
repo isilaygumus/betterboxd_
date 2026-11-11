@@ -1,7 +1,7 @@
 ﻿@page
 @model betterboxd_web.Pages.Account.RegisterModel
 @{
-    ViewData["Title"] = "Giriş Yap";
+    ViewData["Title"] = "Üye Ol";
 }
     <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 
@@ -20,6 +20,7 @@
                             <label asp-for="Input.Username" class="form-label text-custom-label small">Kullanıcı Adı</label>
                             <input asp-for="Input.Username" class="form-control input-custom" placeholder="Kullanıcı adı" />
                             <span asp-validation-for="Input.Username" class="text-danger small"></span>
+                            <div class="form-text text-custom-label small">En az 8 karakter, bir küçük harf, bir büyük harf, bir özel karakter ve bir rakam.</div>
                         </div>
 
                         <div class="mb-3">
@@ -35,6 +36,10 @@
                         </div>
 
                         <button type="submit" class="btn btn-custom-submit w-100 py-2">Üye Ol</button>
+                        <div class="text-center mt-3">
+                        <span class="text-custom-label small">Zaten bir hesabın var mı?</span> 
+                        <a asp-page="/Account/Login" class="link-custom small">Giriş Yap</a>
+                    </div>
                     </form>
 
                 </div>
@@ -42,4 +47,7 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <partial name= "_ValidationScriptsPartial" />
+    }
 

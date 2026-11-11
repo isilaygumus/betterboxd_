@@ -8,11 +8,19 @@ namespace betterboxd_web.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
-        public LoginModel(SignInManager<IdentityUser> signInManager)
-            => _signInManager = signInManager;
-         
+        private readonly UserManager<IdentityUser> _userManager;
+        public LoginModel(SignInManager<IdentityUser> signInManager,
+                          UserManager<IdentityUser> userManager)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+        }
+
         [BindProperty]
         public InputModel Input { get; set; } = new();
+
+        [BindProperty(SupportsGet = true)]
+        public string? ReturnUrl { get; set; }
 
         public class InputModel
         {
@@ -30,17 +38,40 @@ namespace betterboxd_web.Pages.Account
         {
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            var girilen = Input.UsernameOrEmail.Trim();
+            var user = girilen.Contains('@')
+                ? await _userManager.FindByEmailAsync(girilen)
+                : await _userManager.FindByNameAsync(girilen);
+
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifre hatalı.");
+                return Page();
+            }
+
             var result = await _signInManager.PasswordSignInAsync(
-                Input.UsernameOrEmail, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                user, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+            
             if (result.Succeeded)
+            {
+                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                    return LocalRedirect(ReturnUrl);
+
                 return RedirectToPage("/Profil");
+            }
+
+            if (result.IsLockedOut)
+            {
+                ModelState.AddModelError(string.Empty, "Çok fazla deneme yapıldı lütfen birkaç dakika sonra tekrar deneyin.");
+                return Page();
+            }
 
             ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifresi hatalı.");
             return Page();

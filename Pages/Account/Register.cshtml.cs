@@ -68,7 +68,6 @@ namespace betterboxd_web.Pages.Account
                 ModelState.AddModelError(string.Empty, error.Description);
 
             return Page();
-            // 1. Hafta geçici yönlendirmesi (Veritabanı/Identity 3. haftada eklenecek)
         }
     }
 }
