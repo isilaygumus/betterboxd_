@@ -1,0 +1,89 @@
+﻿@page "{id:int}"
+@model betterboxd_web.Pages.Movies.DetailsModel
+@{
+    ViewData["Title"] = Model.Movie.Title;
+    var stars = (int)Math.Round(Model.Movie.Rating);
+}
+<div class="text-light">
+<a asp-page="/Index" class="text-decoration-none mb-3 d-inline-block">← Ana sayfaya dön</a>
+
+<div class="row g-4">
+    <!-- Afiş -->
+    <div class="col-12 col-md-4 col-lg-3">
+        @if (!string.IsNullOrEmpty(Model.Movie.PosterUrl))
+        {
+            <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title afişi"
+                 class="img-fluid rounded shadow" style="width:100%;">
+        }
+        else
+        {
+            <div class="rounded d-flex align-items-center justify-content-center bg-secondary"
+                 style="aspect-ratio:2/3; width:100%;">
+                <span class="text-white-50">Afiş yok</span>
+            </div>
+        }
+    </div>
+
+    <!-- Bilgiler -->
+    <div class="col-12 col-md-8 col-lg-9">
+        <h1 class="mb-1">@Model.Movie.Title</h1>
+
+        <div class="mb-3">
+            <span class="badge bg-secondary me-1">@Model.Movie.Year</span>
+            <span class="badge bg-success">@Model.Movie.Genre.Ad</span>
+        </div>
+
+        <div class="mb-3 fs-4" aria-label="Puan: @Model.Movie.Rating / 5">
+            @for (int i = 1; i <= 5; i++)
+            {
+                <span class="@(i <= stars ? "text-success" : "text-secondary")">★</span>
+            }
+            <span class="fs-6 ms-2">@Model.Movie.Rating.ToString("0.0") / 5</span>
+        </div>
+
+        <dl class="row mb-4">
+            <dt class="col-sm-3 text-uppercase small text-secondary">Yönetmen</dt>
+            <dd class="col-sm-9">@Model.Movie.Director</dd>
+
+            <dt class="col-sm-3 text-uppercase small text-secondary">Çıkış yılı</dt>
+            <dd class="col-sm-9">@Model.Movie.Year</dd>
+
+            <dt class="col-sm-3 text-uppercase small text-secondary">Tür</dt>
+            <dd class="col-sm-9">@Model.Movie.Genre.Ad</dd>
+
+            <dt class="col-sm-3 text-uppercase small text-secondary">Eklenme tarihi</dt>
+            <dd class="col-sm-9">@Model.Movie.AddedDate.ToLocalTime().ToString("dd.MM.yyyy")</dd>
+        </dl>
+
+        <!-- Yorumlar: Reviews hazır olunca burası doldurulacak -->
+        <h2 class="h6 text-uppercase text-secondary">Yorumlar</h2>
+        <p class="text-white-50">Yorumlar yakında.</p>
+    </div>
+</div>
+
+@if (Model.RelatedMovies.Any())
+{
+    <hr class="my-4" />
+    <h2 class="h6 text-uppercase text-secondary mb-3">Aynı türden filmler</h2>
+
+    <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-3">
+        @foreach (var m in Model.RelatedMovies)
+        {
+            <div class="col">
+                <a asp-page="/Movies/Details" asp-route-id="@m.Id" class="text-decoration-none text-reset">
+                    @if (!string.IsNullOrEmpty(m.PosterUrl))
+                    {
+                        <img src="@m.PosterUrl" alt="@m.Title" loading="lazy"
+                             class="img-fluid rounded" style="width:100%;">
+                    }
+                    else
+                    {
+                        <div class="rounded bg-secondary" style="aspect-ratio:2/3;"></div>
+                    }
+                    <div class="small mt-1 text-truncate">@m.Title</div>
+                </a>
+            </div>
+        }
+    </div>
+}
+</div>

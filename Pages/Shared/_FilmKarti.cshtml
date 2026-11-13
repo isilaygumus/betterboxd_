@@ -2,7 +2,7 @@
 
 @* Tek bir film kartı: afiş, ad, yıl · yönetmen ve puan.
    Kullanımı: <partial name="_FilmKarti" model="film" /> *@
-
+<a asp-page="/Movies/Details" asp-route-id="@Model.Id" class="text-decoration-none text-reset">
 <div class="card film-karti h-100">
     @if (Model.PosterUrl != null)
     {
@@ -18,3 +18,4 @@
         <span class="puan">★ @Model.Rating</span>
     </div>
 </div>
+</a>
